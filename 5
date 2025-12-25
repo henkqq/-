@@ -1,24 +1,28 @@
 #include <iostream>
+using namespace std;
+
 #include <windows.h>
 int main() {
-    int h=10, c[]={12,14,10,13,11,9}; // цвета гирлянды
-    for(int f=0;f<5;f++){ // 5 кадров анимации
-        system("cls");
-        // звезда
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
-        std::cout<<std::string(h-1,' ')<<"*\n";
-        // ёлка с гирляндой
-        for(int i=0;i<h;i++){
-            std::cout<<std::string(h-i-1,' ');
-            for(int j=0;j<2*i+1;j++){
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),j%3?2:c[(i+j+f)%6]);
-                std::cout<<(j%3?'*':'o');
-            }
-            std::cout<<'\n';
-        }
-        // ствол
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
-        std::cout<<std::string(h-1,' ')<<"|||\n";
-        Sleep(300);
+    setlocale(0, "");
+   while(true){
+       int h = 10, c[] = { 12,14,10,13,11,9 };
+       for (int f = 0; f < 5; f++) {
+           system("cls");
+           SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+           cout << std::string(h - 1, ' ') << "*\n";
+           for (int i = 0; i < h; i++) {
+              cout << string(h - i - 1, ' ');
+               for (int j = 0; j < 2 * i + 1; j++) {
+                   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), j % 3 ? 2 : c[(i + j + f) % 6]);
+                   cout << (j % 3 ? '*' : 'o');
+               }
+               cout << '\n';
+           }
+           SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+           cout << string(h - 1, ' ') << "#\n";
+           Sleep(300);
+           
     }
+    }
+    return 0;
 }
